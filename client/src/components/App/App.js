@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Register, Game } from '../../containers';
+import { Register, Game, PlayersList } from '../../containers';
 
 const Title = styled.div`
   text-align: center;
@@ -25,6 +25,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Register} />
           <Route path="/game" component={Game} />
+          <Route path="/players" component={PlayersList} />
         </Switch>
       </Container>
     </div>

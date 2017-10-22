@@ -75,9 +75,12 @@ class Game extends Component {
       if (player1wins === 3) {
         const { updatePlayer } = this.props;
         if (updatePlayer) {
-          const playerToUpdate = players[0];
-          playerToUpdate.gamesWon += 1;
-          updatePlayer(playerToUpdate);
+          const winner = players[0];
+          const loser = players[1];
+          winner.gamesWon += 1;
+          loser.gamesLost += 1;
+          updatePlayer(winner);
+          updatePlayer(loser);
         }
         return { winner: players[0].name };
       } else if (player2wins === 3) {

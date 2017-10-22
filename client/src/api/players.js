@@ -12,3 +12,7 @@ export const createPlayers = players => {
 export const updatePlayer = player => {
   return axios.put(`${REACT_APP_API_BASE}/player`, player);
 };
+
+export const getAllPlayers = () => {
+  return axios.get(`${REACT_APP_API_BASE}/player`);
+};

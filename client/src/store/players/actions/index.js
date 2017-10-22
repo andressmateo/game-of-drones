@@ -24,5 +24,17 @@ export const updateFailure = error => ({
   payload: { error }
 });
 
+// Actions for fetch all players
+export const fetch = player => ({ type: at.FETCH });
+export const fetchRequest = () => ({ type: at.FETCH_REQUEST });
+export const fetchSuccess = players => ({
+  type: at.FETCH_SUCCESS,
+  payload: players
+});
+export const fetchFailure = error => ({
+  type: at.FETCH_FAILURE,
+  payload: { error }
+});
+
 //Clear State
 export const clear = () => ({ type: at.CLEAR });
