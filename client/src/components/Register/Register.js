@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Register extends Component {
   constructor(props) {
@@ -20,8 +21,12 @@ class Register extends Component {
   };
 
   render() {
+    const { createPlayersStatus } = this.props;
+    const redirect =
+      createPlayersStatus !== 'SUCCESS' ? '' : <Redirect to="/game" />;
     return (
       <div>
+        {redirect}
         <h1>Enter player's names</h1>
         <form onSubmit={this.handleSubmit}>
           Player 1

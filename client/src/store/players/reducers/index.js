@@ -19,7 +19,6 @@ const createPlayersStatus = (state = '', action) => {
 };
 
 const activePlayers = (state = [], { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case at.CREATE_SUCCESS: {
       return payload;

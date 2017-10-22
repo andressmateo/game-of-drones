@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { Register } from '../../containers';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Register />
-      </div>
-    );
-  }
-}
+import { Register, Game } from '../../containers';
+
+const App = () => {
+  return (
+    <Switch>
+      <Route exact path="/" component={Register} />
+      <Route path="/game" component={Game} />
+    </Switch>
+  );
+};
 
 export default App;
