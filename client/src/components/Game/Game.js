@@ -34,17 +34,18 @@ class Game extends Component {
       move: '',
       winner: '',
       options: ['rock', 'paper', 'scissors'],
-      rounds: [],
-      rules: {
-        paper: 'rock',
-        rock: 'scissors',
-        scissors: 'paper'
-      }
+      rounds: []
     };
     this.state = { ...this.initialState };
+    this.rules = {
+      paper: 'rock',
+      rock: 'scissors',
+      scissors: 'paper'
+    };
   }
 
-  getRoundWinner = function(playerOneMove, playerTwoMove, rules, rounds) {
+  getRoundWinner = function(playerOneMove, playerTwoMove, rounds) {
+    const { rules } = this;
     if (rules[playerOneMove] === playerTwoMove) {
       rounds.push(0);
       return { rounds };
@@ -104,9 +105,9 @@ class Game extends Component {
   };
 
   play = newMove => {
-    this.setState(({ move, currentMove, rules, rounds, currentRound }) => {
+    this.setState(({ move, currentMove, rounds, currentRound }) => {
       if (currentMove === 1) {
-        const newState = this.getRoundWinner(move, newMove, rules, rounds);
+        const newState = this.getRoundWinner(move, newMove, rounds);
         const newState2 = this.nextRound(
           currentMove,
           currentRound,

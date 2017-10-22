@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board component renders correctly - snapshot 1`] = `
+<div>
+  <h2>
+    player1
+  </h2>
+  <span>
+    Select your move: 
+  </span>
+  <div
+    className="sc-bxivhb cWWhYj"
+  />
+</div>
+`;

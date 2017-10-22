@@ -9,7 +9,7 @@ Clone this repo:
  ## Install dependencies:
  
  This project has another project inside called _client_ you can move to that folder and install his dependences manually, 
- or you can run: `npm run install-all` to install all dependeces together.
+ or you can run: `npm run install-all` to install all dependecies together.
  
  ## Run 
  
@@ -17,4 +17,9 @@ Clone this repo:
  
  Game of drones will start at port *5000* by default.
  
- 
+  ## Test
+
+  You can run the test suites `npm run test`
+
+
+

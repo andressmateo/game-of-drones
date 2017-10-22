@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Congratulations component renders correctly - snapshot 1`] = `
+<div>
+  <div
+    className="sc-htoDjs hnmHng"
+  >
+    <a
+      className="sc-htpNat EgnXO"
+      href="/players"
+      onClick={[Function]}
+    >
+      View All Players
+    </a>
+    <button
+      className="sc-bwzfXH dhjFPh"
+      onClick={[Function]}
+    >
+      Play with new players
+    </button>
+  </div>
+</div>
+`;
