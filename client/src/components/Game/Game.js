@@ -6,6 +6,7 @@ import { Card, Button, LinkButton } from '../StyledComponents';
 import Congratulations from './Congratulations';
 import Board from './Board';
 import Score from './Score';
+import { statusTypes } from '../../utils';
 
 const BoardContainer = Card.extend`
   width: 500px;
@@ -19,6 +20,10 @@ const ActionsContainer = Card.extend`
   justify-content: space-around;
 `;
 const Container = styled.div`display: flex;`;
+
+const PLAYER_ONE = 0;
+const PLAYER_TWO = 1;
+const TIE = -1;
 
 class Game extends Component {
   constructor(props) {
@@ -39,15 +44,15 @@ class Game extends Component {
     this.state = { ...this.initialState };
   }
 
-  getRoundWinner = function(player1move, player2move, rules, rounds) {
-    if (rules[player1move] === player2move) {
+  getRoundWinner = function(playerOneMove, playerTwoMove, rules, rounds) {
+    if (rules[playerOneMove] === playerTwoMove) {
       rounds.push(0);
       return { rounds };
-    } else if (rules[player2move] === player1move) {
+    } else if (rules[playerTwoMove] === playerOneMove) {
       rounds.push(1);
       return { rounds };
     } else {
-      rounds.push(-1);
+      rounds.push(TIE);
       return { rounds };
     }
   };
@@ -56,28 +61,28 @@ class Game extends Component {
     return rounds.reduce(
       (acc, winner) => {
         if (winner === 0) {
-          acc.player1wins += 1;
+          acc.playerOneWins += 1;
         } else if (winner === 1) {
-          acc.player2wins += 1;
+          acc.playerTwoWins += 1;
         }
         return acc;
       },
-      { player1wins: 0, player2wins: 0 }
+      { playerOneWins: 0, playerTwoWins: 0 }
     );
   };
 
   nextRound = function(currentMove, currentRound, rounds) {
     const { players } = this.props;
-    let wins = { player1wins: 0, player2wins: 0 };
+    let wins = { playerOneWins: 0, playerTwoWins: 0 };
     if (currentMove === 1) {
       wins = this.getWinsByPlayer(rounds);
-      const { player1wins, player2wins } = wins;
-      if (player1wins === 3) {
-        this.updatePlayer(players[0]);
-        return { winner: players[0].name };
-      } else if (player2wins === 3) {
-        this.updatePlayer(players[1]);
-        return { winner: players[1].name };
+      const { playerOneWins, playerTwoWins } = wins;
+      if (playerOneWins === 3) {
+        this.updatePlayer(players[PLAYER_ONE]);
+        return { winner: players[PLAYER_ONE].name };
+      } else if (playerTwoWins === 3) {
+        this.updatePlayer(players[PLAYER_TWO]);
+        return { winner: players[PLAYER_TWO].name };
       }
     }
     return {
@@ -118,7 +123,11 @@ class Game extends Component {
     const { createPlayersStatus, players, clearState } = this.props;
     const { currentRound, options, currentMove, rounds, winner } = this.state;
     const redirect =
-      createPlayersStatus === 'NOT_CREATED' ? <Redirect to="/" /> : '';
+      createPlayersStatus !== statusTypes.SUCCEED_STATE ? (
+        <Redirect to="/" />
+      ) : (
+        ''
+      );
 
     return (
       <div>

@@ -6,3 +6,10 @@ export const createAction = (type, baseAction) => {
     [`${baseAction}_FAILURE`]: `${type}/${baseAction}_FAILURE`
   };
 };
+
+export const statusTypes = {
+  UNLOAD_STATE: 'notLoaded',
+  INIT_STATE: 'initState',
+  SUCCEED_STATE: 'succeedState',
+  FAILED_STATE: 'failedState'
+};

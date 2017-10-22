@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { Card, Button, LinkButton } from '../StyledComponents';
+import { Card, LinkButton } from '../StyledComponents';
+import { statusTypes } from '../../utils';
 
 const Container = Card.extend`
   width: 500px;
@@ -22,7 +23,9 @@ const Row = styled.div`
 class PlayersList extends Component {
   componentDidMount() {
     const { fetchPlayers, fetchPlayersStatus } = this.props;
-    fetchPlayers();
+    if (fetchPlayers && fetchPlayersStatus !== statusTypes.SUCCEED_STATE) {
+      fetchPlayers();
+    }
   }
   render() {
     const { players } = this.props;

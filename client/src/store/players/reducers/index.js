@@ -1,36 +1,37 @@
 import { combineReducers } from 'redux';
 
 import at from '../actions/types';
+import { statusTypes } from '../../../utils';
 
-const createPlayersStatus = (state = 'NOT_CREATED', action) => {
+const createPlayersStatus = (state = statusTypes.UNLOAD_STATE, action) => {
   switch (action.type) {
     case at.CREATE_REQUEST: {
-      return 'LOADING';
+      return statusTypes.INIT_STATE;
     }
     case at.CREATE_FAILURE: {
-      return 'FAILED';
+      return statusTypes.FAILED_STATE;
     }
     case at.CREATE_SUCCESS: {
-      return 'SUCCESS';
+      return statusTypes.SUCCEED_STATE;
     }
     case at.CLEAR: {
-      return 'NOT_CREATED';
+      return statusTypes.UNLOAD_STATE;
     }
     default:
       return state;
   }
 };
 
-const updatePlayerStatus = (state = '', action) => {
+const updatePlayerStatus = (state = statusTypes.UNLOAD_STATE, action) => {
   switch (action.type) {
     case at.UPDATE_REQUEST: {
-      return 'LOADING';
+      return statusTypes.INIT_STATE;
     }
     case at.UPDATE_FAILURE: {
-      return 'FAILED';
+      return statusTypes.FAILED_STATE;
     }
     case at.UPDATE_SUCCESS: {
-      return 'SUCCESS';
+      return statusTypes.SUCCEED_STATE;
     }
     default:
       return state;
@@ -73,16 +74,16 @@ const players = (state = [], { type, payload }) => {
   }
 };
 
-const fetchPlayersStatus = (state = '', action) => {
+const fetchPlayersStatus = (state = statusTypes.UNLOAD_STATE, action) => {
   switch (action.type) {
-    case at.REQUEST_REQUEST: {
-      return 'LOADING';
+    case at.FETCH_REQUEST: {
+      return statusTypes.INIT_STATE;
     }
-    case at.REQUEST_FAILURE: {
-      return 'FAILED';
+    case at.FETCH_FAILURE: {
+      return statusTypes.FAILED_STATE;
     }
-    case at.REQUEST_SUCCESS: {
-      return 'SUCCESS';
+    case at.FETCH_SUCCESS: {
+      return statusTypes.SUCCEED_STATE;
     }
     default:
       return state;
