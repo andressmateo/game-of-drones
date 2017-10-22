@@ -78,8 +78,4 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
-
 # End of https://www.gitignore.io/api/git,node,linux
