@@ -8,10 +8,6 @@ const PlayerSchema = new mongoose.Schema({
   gamesWon: {
     type: Number,
     default: 0
-  },
-  gamesLost: {
-    type: Number,
-    default: 0
   }
 });
 

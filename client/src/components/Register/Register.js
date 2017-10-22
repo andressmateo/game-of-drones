@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { Card, Button } from '../StyledComponents';
+import { Card, Button, LinkButton } from '../StyledComponents';
 
 const Container = Card.extend`
   width: 500px;
@@ -24,9 +24,11 @@ const Container = Card.extend`
       align-items: baseline;
     }
   }
+  button,
+  a {
+    margin-top: 30px;
+  }
 `;
-
-const StartButton = Button.extend`margin-top: 30px;`;
 
 class Register extends Component {
   constructor(props) {
@@ -70,7 +72,10 @@ class Register extends Component {
               onChange={e => this.setState({ player2: e.target.value })}
             />
           </span>
-          <StartButton type="submit">Start</StartButton>
+          <span>
+            <Button type="submit">Start</Button>
+            <LinkButton to="/players">View All Players</LinkButton>
+          </span>
         </form>
       </Container>
     );

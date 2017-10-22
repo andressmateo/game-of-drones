@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
-import { Card, Button } from '../StyledComponents';
+import { Card, Button, LinkButton } from '../StyledComponents';
 import Congratulations from './Congratulations';
 import Board from './Board';
 import Score from './Score';
@@ -73,17 +73,10 @@ class Game extends Component {
       wins = this.getWinsByPlayer(rounds);
       const { player1wins, player2wins } = wins;
       if (player1wins === 3) {
-        const { updatePlayer } = this.props;
-        if (updatePlayer) {
-          const winner = players[0];
-          const loser = players[1];
-          winner.gamesWon += 1;
-          loser.gamesLost += 1;
-          updatePlayer(winner);
-          updatePlayer(loser);
-        }
+        this.updatePlayer(players[0]);
         return { winner: players[0].name };
       } else if (player2wins === 3) {
+        this.updatePlayer(players[1]);
         return { winner: players[1].name };
       }
     }
@@ -93,7 +86,13 @@ class Game extends Component {
     };
   };
 
-  clearState = function() {};
+  updatePlayer = function(player) {
+    const { updatePlayer } = this.props;
+    if (updatePlayer) {
+      player.gamesWon += 1;
+      updatePlayer(player);
+    }
+  };
 
   playAgain = () => {
     this.setState({ ...this.initialState, rounds: [] });
@@ -145,7 +144,7 @@ class Game extends Component {
           </span>
         )}
         <ActionsContainer>
-          <Button blue>View all players</Button>
+          <LinkButton to="/players">View All Players</LinkButton>
           <Button blue onClick={() => clearState()}>
             Play with new players
           </Button>

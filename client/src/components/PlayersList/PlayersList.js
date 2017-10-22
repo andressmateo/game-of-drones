@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { Card } from '../StyledComponents';
+import { Card, Button, LinkButton } from '../StyledComponents';
 
-const Container = Card.extend`width: 500px;`;
+const Container = Card.extend`
+  width: 500px;
+  margin-bottom: 50px;
+`;
 
 const Row = styled.div`
   display: flex;
@@ -16,24 +19,31 @@ const Row = styled.div`
   }
 `;
 
-const PlayersList = ({ players, fetchPlayersStatus, fetchPlayers }) => {
-  //  fetchPlayers();
-  return (
-    <Container>
-      <h1>Players</h1>
-      <Row>
-        <strong>Player</strong> <strong>Games won</strong>
-        <strong>Games lost</strong>
-      </Row>
-      {players.map(({ _id, gamesWon, name }) => (
-        <Row key={_id}>
-          <span>{name}</span>
-          <span>{gamesWon}</span>
-          <span>0</span>
-        </Row>
-      ))}
-    </Container>
-  );
-};
+class PlayersList extends Component {
+  componentDidMount() {
+    const { fetchPlayers, fetchPlayersStatus } = this.props;
+    fetchPlayers();
+  }
+  render() {
+    const { players } = this.props;
+    return (
+      <div>
+        <Container>
+          <h1>Players</h1>
+          <Row>
+            <strong>Player</strong> <strong>Games won</strong>
+          </Row>
+          {players.map(({ _id, gamesWon, name }) => (
+            <Row key={_id}>
+              <span>{name}</span>
+              <span>{gamesWon}</span>
+            </Row>
+          ))}
+        </Container>
+        <LinkButton to="/">Back to the game</LinkButton>
+      </div>
+    );
+  }
+}
 
 export default PlayersList;

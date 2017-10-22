@@ -15,6 +15,8 @@ const Title = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Roboto', arial, sans-serif !important;
 `;
 
 const App = () => {

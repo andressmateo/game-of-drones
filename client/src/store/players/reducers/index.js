@@ -42,6 +42,11 @@ const activePlayers = (state = [], { type, payload }) => {
     case at.CREATE_SUCCESS: {
       return payload;
     }
+    case at.UPDATE_SUCCESS: {
+      return state.map(
+        player => (player._id === payload._id ? payload : player)
+      );
+    }
     case at.CLEAR: {
       return [];
     }
@@ -54,6 +59,14 @@ const players = (state = [], { type, payload }) => {
   switch (type) {
     case at.FETCH_SUCCESS: {
       return payload;
+    }
+    case at.UPDATE_SUCCESS: {
+      return state.map(
+        player => (player._id === payload._id ? payload : player)
+      );
+    }
+    case at.CREATE_SUCCESS: {
+      return [...state, ...payload];
     }
     default:
       return state;

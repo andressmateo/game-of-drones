@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Card = styled.div`
   background-color: #fff;
@@ -20,4 +21,19 @@ export const Button = styled.button`
   border-color: ${props => (props.gray ? '#bec6c6;' : 'transparent')};
   border-radius: 4px;
   text-transform: capitalize;
+  font-weight: bold;
+`;
+
+export const LinkButton = styled(Link)`
+  font-size: 16px;
+  padding: 8px 16px;
+  align-self: center;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  background-color: #42a5f5;
+  border-color: transparent;
+  border-radius: 4px;
+  text-decoration: none !important;
+  color: #fff !important;
 `;
