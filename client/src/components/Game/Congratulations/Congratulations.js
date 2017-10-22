@@ -14,7 +14,9 @@ const Congratulations = ({ name, playAgain }) => {
       <h1>We have a WINNER!!</h1>
       <h2>{name} is the new EMPEROR!</h2>
       <br />
-      <Button onClick={() => playAgain()}>Play Again</Button>
+      <Button onClick={() => playAgain()} id="play-again">
+        Play Again
+      </Button>
     </Container>
   );
 };

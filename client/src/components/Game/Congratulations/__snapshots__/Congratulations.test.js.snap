@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Congratulations component renders correctly - snapshot 1`] = `
+<div
+  className="sc-bxivhb khVRMm"
+>
+  <h1>
+    We have a WINNER!!
+  </h1>
+  <h2>
+     is the new EMPEROR!
+  </h2>
+  <br />
+  <button
+    className="sc-bwzfXH fMRgfY"
+    id="play-again"
+    onClick={[Function]}
+  >
+    Play Again
+  </button>
+</div>
+`;

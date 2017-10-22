@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register component renders correctly - snapshot 1`] = `
+<div
+  className="sc-bxivhb uHiEd"
+>
+  
+  <h1>
+    Enter player's names
+  </h1>
+  <form
+    id="register-form"
+    onSubmit={[Function]}
+  >
+    <span>
+      <label>
+        Player 1
+      </label>
+      <input
+        id="player-one"
+        onChange={[Function]}
+        type="text"
+      />
+    </span>
+    <span>
+      <label>
+        Player 2
+      </label>
+      <input
+        id="player-two"
+        onChange={[Function]}
+        type="text"
+      />
+    </span>
+    <h5>
+      
+    </h5>
+    <span>
+      <button
+        className="sc-bwzfXH fMRgfY"
+        type="submit"
+      >
+        Start
+      </button>
+      <a
+        className="sc-htpNat EgnXO"
+        href="/players"
+        onClick={[Function]}
+      >
+        View All Players
+      </a>
+    </span>
+  </form>
+</div>
+`;

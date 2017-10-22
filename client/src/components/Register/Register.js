@@ -63,11 +63,12 @@ class Register extends Component {
       <Container>
         {redirect}
         <h1>Enter player's names</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="register-form">
           <span>
             <label>Player 1</label>
             <input
               type="text"
+              id="player-one"
               onChange={e => this.setState({ player1: e.target.value })}
             />
           </span>
@@ -75,6 +76,7 @@ class Register extends Component {
             <label>Player 2</label>
             <input
               type="text"
+              id="player-two"
               onChange={e => this.setState({ player2: e.target.value })}
             />
           </span>
