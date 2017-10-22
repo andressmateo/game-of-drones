@@ -13,6 +13,9 @@ const createPlayersStatus = (state = 'NOT_CREATED', action) => {
     case at.CREATE_SUCCESS: {
       return 'SUCCESS';
     }
+    case at.CLEAR: {
+      return 'NOT_CREATED';
+    }
     default:
       return state;
   }
@@ -38,6 +41,9 @@ const activePlayers = (state = [], { type, payload }) => {
   switch (type) {
     case at.CREATE_SUCCESS: {
       return payload;
+    }
+    case at.CLEAR: {
+      return [];
     }
     default:
       return state;

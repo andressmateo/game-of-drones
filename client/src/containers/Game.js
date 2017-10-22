@@ -15,5 +15,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  updatePlayer: actions.update
+  updatePlayer: actions.update,
+  clearState: actions.clear
 })(Game);

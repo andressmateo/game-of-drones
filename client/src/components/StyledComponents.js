@@ -15,8 +15,9 @@ export const Button = styled.button`
   cursor: pointer;
   min-width: 100px;
   color: ${props => (props.gray ? '#4c5656;' : '#fff')};
-  background-color: ${props => (props.gray ? '#fff;' : '#3fda97')};
+  background-color: ${props =>
+    props.gray ? '#fff;' : props.blue ? '#42a5f5' : '#3fda97'};
   border-color: ${props => (props.gray ? '#bec6c6;' : 'transparent')};
-  border-radius: ${props => (props.gray ? '4px;' : '0')};
+  border-radius: 4px;
   text-transform: capitalize;
 `;

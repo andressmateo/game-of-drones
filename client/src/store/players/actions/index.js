@@ -23,3 +23,6 @@ export const updateFailure = error => ({
   type: at.UPDATE_FAILURE,
   payload: { error }
 });
+
+//Clear State
+export const clear = () => ({ type: at.CLEAR });

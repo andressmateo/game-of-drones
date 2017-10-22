@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
-import { Card } from '../StyledComponents';
+import { Card, Button } from '../StyledComponents';
 import Congratulations from './Congratulations';
 import Board from './Board';
 import Score from './Score';
@@ -11,7 +12,12 @@ const BoardContainer = Card.extend`
   margin-right: 50px;
 `;
 const ScoreContainer = Card.extend`width: 300px;`;
-const ActionsContainer = Card.extend`width: 300px;`;
+const ActionsContainer = Card.extend`
+  width: auto;
+  margin: 40px;
+  display: flex;
+  justify-content: space-around;
+`;
 const Container = styled.div`display: flex;`;
 
 class Game extends Component {
@@ -84,8 +90,10 @@ class Game extends Component {
     };
   };
 
-  clearState = function() {
-    this.setState({ ...this.initialState });
+  clearState = function() {};
+
+  playAgain = () => {
+    this.setState({ ...this.initialState, rounds: [] });
   };
 
   play = newMove => {
@@ -105,17 +113,17 @@ class Game extends Component {
   };
 
   render() {
-    const { createPlayersStatus, players } = this.props;
+    const { createPlayersStatus, players, clearState } = this.props;
     const { currentRound, options, currentMove, rounds, winner } = this.state;
     const redirect =
-      createPlayersStatus === 'NOT_CREATED' ? 'Please create the players ' : '';
+      createPlayersStatus === 'NOT_CREATED' ? <Redirect to="/" /> : '';
 
     return (
       <div>
         {redirect ? (
           redirect
         ) : winner ? (
-          <Congratulations name={winner} />
+          <Congratulations name={winner} playAgain={this.playAgain} />
         ) : (
           <span>
             <h1>Round {currentRound}</h1>
@@ -133,6 +141,12 @@ class Game extends Component {
             </Container>
           </span>
         )}
+        <ActionsContainer>
+          <Button blue>View all players</Button>
+          <Button blue onClick={() => clearState()}>
+            Play with new players
+          </Button>
+        </ActionsContainer>
       </div>
     );
   }
