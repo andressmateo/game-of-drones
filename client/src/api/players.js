@@ -6,13 +6,13 @@ dotenv.config();
 const { REACT_APP_API_BASE = '' } = process.env;
 
 export const createPlayers = players => {
-  return axios.post(`${REACT_APP_API_BASE}/player/bulk`, players);
+  return axios.post(`${REACT_APP_API_BASE}/api/player/bulk`, players);
 };
 
 export const updatePlayer = player => {
-  return axios.put(`${REACT_APP_API_BASE}/player`, player);
+  return axios.put(`${REACT_APP_API_BASE}/api/player`, player);
 };
 
 export const getAllPlayers = () => {
-  return axios.get(`${REACT_APP_API_BASE}/player`);
+  return axios.get(`${REACT_APP_API_BASE}/api/player`);
 };
