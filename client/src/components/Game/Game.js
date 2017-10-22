@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Card } from '../StyledComponents';
+import Congratulations from './Congratulations';
 import Board from './Board';
 import Score from './Score';
 
@@ -11,6 +11,7 @@ const BoardContainer = Card.extend`
   margin-right: 50px;
 `;
 const ScoreContainer = Card.extend`width: 300px;`;
+const ActionsContainer = Card.extend`width: 300px;`;
 const Container = styled.div`display: flex;`;
 
 class Game extends Component {
@@ -20,6 +21,7 @@ class Game extends Component {
       currentRound: 1,
       currentMove: 0,
       move: '',
+      winner: '',
       options: ['rock', 'paper', 'scissors'],
       rounds: [],
       rules: {
@@ -59,6 +61,7 @@ class Game extends Component {
   };
 
   nextRound = function(currentMove, currentRound, rounds) {
+    const { players } = this.props;
     let wins = { player1wins: 0, player2wins: 0 };
     if (currentMove === 1) {
       wins = this.getWinsByPlayer(rounds);
@@ -66,14 +69,13 @@ class Game extends Component {
       if (player1wins === 3) {
         const { updatePlayer } = this.props;
         if (updatePlayer) {
-          const { players } = this.props;
           const playerToUpdate = players[0];
           playerToUpdate.gamesWon += 1;
           updatePlayer(playerToUpdate);
         }
-        alert('player 1 wins');
+        return { winner: players[0].name };
       } else if (player2wins === 3) {
-        alert('player 2 wins');
+        return { winner: players[1].name };
       }
     }
     return {
@@ -104,28 +106,32 @@ class Game extends Component {
 
   render() {
     const { createPlayersStatus, players } = this.props;
-    const { currentRound, options, currentMove, rounds } = this.state;
+    const { currentRound, options, currentMove, rounds, winner } = this.state;
     const redirect =
-      createPlayersStatus === 'SUCCESS' ? '' : <Redirect to="/" />;
+      createPlayersStatus === 'NOT_CREATED' ? 'Please create the players ' : '';
 
     return (
       <div>
-        <h1>Round {currentRound}</h1>
         {redirect ? (
           redirect
+        ) : winner ? (
+          <Congratulations name={winner} />
         ) : (
-          <Container>
-            <BoardContainer>
-              <Board
-                player={players[currentMove]}
-                options={options}
-                play={this.play}
-              />
-            </BoardContainer>
-            <ScoreContainer>
-              <Score rounds={rounds} players={players} />
-            </ScoreContainer>
-          </Container>
+          <span>
+            <h1>Round {currentRound}</h1>
+            <Container>
+              <BoardContainer>
+                <Board
+                  player={players[currentMove]}
+                  options={options}
+                  play={this.play}
+                />
+              </BoardContainer>
+              <ScoreContainer>
+                <Score rounds={rounds} players={players} />
+              </ScoreContainer>
+            </Container>
+          </span>
         )}
       </div>
     );

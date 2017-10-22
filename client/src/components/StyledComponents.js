@@ -18,4 +18,5 @@ export const Button = styled.button`
   background-color: ${props => (props.gray ? '#fff;' : '#3fda97')};
   border-color: ${props => (props.gray ? '#bec6c6;' : 'transparent')};
   border-radius: ${props => (props.gray ? '4px;' : '0')};
+  text-transform: capitalize;
 `;

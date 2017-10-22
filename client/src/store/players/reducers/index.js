@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import at from '../actions/types';
 
-const createPlayersStatus = (state = '', action) => {
+const createPlayersStatus = (state = 'NOT_CREATED', action) => {
   switch (action.type) {
     case at.CREATE_REQUEST: {
       return 'LOADING';
