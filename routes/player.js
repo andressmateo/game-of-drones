@@ -8,15 +8,24 @@ router
   .get(async (req, res) => {
     try {
       const players = await PlayerController.getAll();
-      return res.json(samples);
+      return res.json(players);
     } catch (err) {
       return res.json(err);
     }
   })
   .post(async (req, res) => {
     try {
-      const sample = await SampleController.create(req.body.player);
-      return res.json(sample);
+      const player = await PlayerController.create(req.body.player);
+      return res.json(player);
+    } catch (err) {
+      res.json(err);
+    }
+  })
+  .put(async (req, res) => {
+    try {
+      const { _id, ...data } = req.body.player;
+      const player = await PlayerController.update(_id, data);
+      return res.json(player);
     } catch (err) {
       res.json(err);
     }

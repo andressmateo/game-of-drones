@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { selectors } from '../store/players';
+import { actions, selectors } from '../store/players';
 
 import Game from '../components/Game';
 
@@ -9,10 +9,11 @@ function mapStateToProps(state) {
 
   return {
     players: players.getActivePlayers(),
-    createPlayersStatus: players.getCreatePlayersStatus()
+    createPlayersStatus: players.getCreatePlayersStatus(),
+    updatePlayerStatus: players.getUpdatePlayerStatus()
   };
 }
 
 export default connect(mapStateToProps, {
-  // createPlayers: actions.create
+  updatePlayer: actions.update
 })(Game);

@@ -18,6 +18,22 @@ const createPlayersStatus = (state = '', action) => {
   }
 };
 
+const updatePlayerStatus = (state = '', action) => {
+  switch (action.type) {
+    case at.UPDATE_REQUEST: {
+      return 'LOADING';
+    }
+    case at.UPDATE_FAILURE: {
+      return 'FAILED';
+    }
+    case at.UPDATE_SUCCESS: {
+      return 'SUCCESS';
+    }
+    default:
+      return state;
+  }
+};
+
 const activePlayers = (state = [], { type, payload }) => {
   switch (type) {
     case at.CREATE_SUCCESS: {
@@ -28,4 +44,8 @@ const activePlayers = (state = [], { type, payload }) => {
   }
 };
 
-export default combineReducers({ activePlayers, createPlayersStatus });
+export default combineReducers({
+  activePlayers,
+  createPlayersStatus,
+  updatePlayerStatus
+});

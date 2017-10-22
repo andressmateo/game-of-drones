@@ -6,7 +6,7 @@ import Score from './Score';
 class Game extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       currentRound: 1,
       currentMove: 0,
       move: '',
@@ -18,6 +18,7 @@ class Game extends Component {
         scissors: 'paper'
       }
     };
+    this.state = { ...this.initialState };
   }
 
   getRoundWinner = function(player1move, player2move, rules, rounds) {
@@ -54,6 +55,13 @@ class Game extends Component {
       wins = this.getWinsByPlayer(rounds);
       const { player1wins, player2wins } = wins;
       if (player1wins === 3) {
+        const { updatePlayer } = this.props;
+        if (updatePlayer) {
+          const { players } = this.props;
+          const playerToUpdate = players[0];
+          playerToUpdate.gamesWon += 1;
+          updatePlayer(playerToUpdate);
+        }
         alert('player 1 wins');
       } else if (player2wins === 3) {
         alert('player 2 wins');
@@ -66,6 +74,10 @@ class Game extends Component {
       };
     }
     return result;
+  };
+
+  clearState = function() {
+    this.setState({ ...this.initialState });
   };
 
   play = newMove => {

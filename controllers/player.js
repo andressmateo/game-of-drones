@@ -14,6 +14,10 @@ export const create = ({ name }) => {
   return newPlayer.save();
 };
 
+export const update = (id, newData) => {
+  return Player.findByIdAndUpdate(id, newData, { new: true });
+};
+
 export const createBulk = players => {
   const newPlayers = players.map(({ name }) => Player.create({ name }));
   return Promise.all([...newPlayers]);

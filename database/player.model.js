@@ -4,6 +4,14 @@ const PlayerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
+  },
+  gamesWon: {
+    type: Number,
+    default: 0
+  },
+  gamesLost: {
+    type: Number,
+    default: 0
   }
 });
 
