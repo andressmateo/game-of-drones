@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { Card } from '../StyledComponents';
 import Board from './Board';
 import Score from './Score';
+
+const BoardContainer = Card.extend`
+  width: 500px;
+  margin-right: 50px;
+`;
+const ScoreContainer = Card.extend`width: 300px;`;
+const Container = styled.div`display: flex;`;
 
 class Game extends Component {
   constructor(props) {
@@ -50,7 +60,6 @@ class Game extends Component {
 
   nextRound = function(currentMove, currentRound, rounds) {
     let wins = { player1wins: 0, player2wins: 0 };
-    let result = {};
     if (currentMove === 1) {
       wins = this.getWinsByPlayer(rounds);
       const { player1wins, player2wins } = wins;
@@ -66,14 +75,11 @@ class Game extends Component {
       } else if (player2wins === 3) {
         alert('player 2 wins');
       }
-      return { currentMove: +!currentMove };
-    } else {
-      result = {
-        currentMove: +!currentMove,
-        currentRound: currentMove === 1 ? ++currentRound : currentRound
-      };
     }
-    return result;
+    return {
+      currentMove: +!currentMove,
+      currentRound: currentMove === 1 ? ++currentRound : currentRound
+    };
   };
 
   clearState = function() {
@@ -108,14 +114,18 @@ class Game extends Component {
         {redirect ? (
           redirect
         ) : (
-          <div>
-            <Board
-              player={players[currentMove]}
-              options={options}
-              play={this.play}
-            />
-            <Score rounds={rounds} players={players} />
-          </div>
+          <Container>
+            <BoardContainer>
+              <Board
+                player={players[currentMove]}
+                options={options}
+                play={this.play}
+              />
+            </BoardContainer>
+            <ScoreContainer>
+              <Score rounds={rounds} players={players} />
+            </ScoreContainer>
+          </Container>
         )}
       </div>
     );
